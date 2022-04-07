@@ -1,0 +1,71 @@
+import { BinarySearchTree } from './binary.search.tree'
+
+describe('binary search tree', () => {
+    test('create root node', () => {
+        const tree = new BinarySearchTree()
+        tree.insert(5)
+        expect(tree.root.value).toBe(5)
+    })
+
+    test('insert sorted nodes', () => {
+        const tree = new BinarySearchTree()
+        tree.insert(5)
+        tree.insert(7)
+        tree.insert(2)
+        tree.insert(3)
+        tree.insert(6)
+        expect(tree.root.value).toBe(5)
+        expect(tree.root.left.value).toBe(2)
+        expect(tree.root.right.value).toBe(7)
+        expect(tree.root.left.right.value).toBe(3)
+        expect(tree.root.right.left.value).toBe(6)
+        expect(tree.preOrder()).toEqual([5, 2, 3, 7, 6])
+    })
+
+    describe('#delete', () => {
+        test('delete leaf node', () => {
+            const tree = new BinarySearchTree()
+            tree.insert(50)
+            tree.insert(70)
+            tree.insert(30)
+            tree.insert(20)
+            tree.insert(40)
+            tree.insert(60)
+            tree.insert(80)
+            expect(tree.preOrder()).toEqual([50, 30, 20, 40, 70, 60, 80])
+            tree.delete(80)
+            expect(tree.preOrder()).toEqual([50, 30, 20, 40, 70, 60])
+        })
+
+        test('delete node with single successor', () => {
+            const tree = new BinarySearchTree()
+            tree.insert(50)
+            tree.insert(70)
+            tree.insert(30)
+            tree.insert(20)
+            tree.insert(40)
+            tree.insert(60)
+            tree.insert(65)
+            expect(tree.preOrder()).toEqual([50, 30, 20, 40, 70, 60, 65])
+            tree.delete(70)
+            expect(tree.preOrder()).toEqual([50, 30, 20, 40, 60, 65])
+            expect(tree.root.right.value).toBe(60)
+        })
+
+        test('delete parent of two nodes', () => {
+            const tree = new BinarySearchTree()
+            tree.insert(50)
+            tree.insert(70)
+            tree.insert(30)
+            tree.insert(20)
+            tree.insert(40)
+            tree.insert(60)
+            tree.insert(80)
+            expect(tree.preOrder()).toEqual([50, 30, 20, 40, 70, 60, 80])
+            tree.delete(50)
+            console.log("TREE AFTER DELETE", tree.root)
+            expect(tree.preOrder()).toEqual([60, 30, 20, 40, 70, 80])
+            expect(tree.root.value).toBe(60)
+        })
+    })
+})
