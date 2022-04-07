@@ -10,7 +10,7 @@ export class BinarySearchTree {
     }
 
     preOrder() {
-        const out = [];
+        const out: number[] = [];
         if (this.root) {
             this.root.preOrder(out)
         }
