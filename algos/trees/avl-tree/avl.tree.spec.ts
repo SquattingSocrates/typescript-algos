@@ -15,7 +15,7 @@ describe('AVLTree', () => {
         tree.insert(40)
         tree.insert(50)
         tree.insert(25)
-        console.log("GOT THIS TREE", tree.root)
+        console.log('GOT THIS TREE', tree.root)
         expect(tree.root.value).toBe(30)
         expect(tree.root.left.value).toBe(20)
         expect(tree.root.right.value).toBe(40)
@@ -51,7 +51,7 @@ describe('AVLTree', () => {
             tree.insert(-1)
             tree.insert(1)
             tree.insert(2)
-            
+
             expect(tree.preOrder()).toEqual([9, 1, 0, -1, 5, 2, 6, 10, 11])
             tree.delete(10)
             expect(tree.preOrder()).toEqual([1, 0, -1, 9, 5, 2, 6, 11])
